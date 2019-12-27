@@ -15,10 +15,9 @@ private:
     const std::chrono::steady_clock::time_point start_time = std::chrono::steady_clock::now();
 
 public:
-    ProgressBar(unsigned int total, unsigned int width, char complete, char incomplete) :
-            total_ticks {total}, bar_width {width}, complete_char {complete}, incomplete_char {incomplete} {}
+    ProgressBar(unsigned int total, unsigned int width, char complete='/', char incomplete='-'):
+            total_ticks(total), bar_width(width), complete_char(complete), incomplete_char(incomplete) {}
 
-    ProgressBar(unsigned int total, unsigned int width) : total_ticks {total}, bar_width {width} {}
 
     unsigned int operator++() { return ++ticks; }
 
