@@ -15,7 +15,7 @@ private:
     const std::chrono::steady_clock::time_point start_time = std::chrono::steady_clock::now();
 
 public:
-    ProgressBar(unsigned int total, unsigned int width, char complete='/', char incomplete='-'):
+    ProgressBar(unsigned int total, unsigned int width, char complete='/', char incomplete='_'):
             total_ticks(total), bar_width(width), complete_char(complete), incomplete_char(incomplete) {}
 
 
@@ -36,7 +36,9 @@ public:
             else if (i == pos) std::cout << ">";
             else std::cout << incomplete_char;
         }
-        std::cout << "] " << int(progress * 100.0) << "% "
+        std::cout << "] "
+                  << ticks << '/' << total_ticks << "  |  "
+                  << int(progress * 100.0) << "%  |  "
                   << float(time_elapsed) / 1000.0 << "s\r";
         std::cout.flush();
     }
